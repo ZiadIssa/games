@@ -1289,9 +1289,19 @@ a.make:hover .make-art span{transform:scale(1.08) rotate(90deg)}
 .deck figcaption::before{content:"";width:8px;height:8px;border-radius:50%;background:#34C759}
 .ctrl h3{font-size:clamp(32px,4.4vw,50px);font-weight:700;letter-spacing:-0.04em;line-height:1.05}
 .ctrl-copy p{font-size:clamp(17px,1.8vw,20px);color:var(--ink-2);margin-top:14px;line-height:1.4;max-width:40ch}
-.ctrl-list{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ctrl-list li{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:var(--bg-alt);font-size:16px;font-weight:600;letter-spacing:-0.01em}
-.ctrl-list svg{width:24px;height:24px;flex:0 0 24px;color:var(--accent)}
+.ctrl-extra{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.ctrl-extra li{display:inline-flex;align-items:center;gap:9px;padding:10px 14px;border-radius:14px;background:var(--bg-alt);font-size:15px;font-weight:600}
+.ctrl-extra svg{width:22px;height:22px;color:var(--accent)}
+.ctrl-cards{list-style:none;padding:0;margin:clamp(36px,5vw,56px) 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ctrl-card{background:var(--bg-alt);border-radius:26px;padding:22px 24px 26px;display:flex;flex-direction:column;gap:4px;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.ctrl-card:hover{transform:translateY(-4px);box-shadow:0 24px 50px -28px rgba(10,95,224,.45)}
+.ctrl-art{aspect-ratio:16/10;display:grid;place-items:center;margin-bottom:14px;border-radius:18px;background:radial-gradient(80% 80% at 50% 40%,#FFFFFF 0%,#EEF4FF 70%,#F7EEFB 100%)}
+.ctrl-art img{max-width:82%;max-height:82%;object-fit:contain;filter:drop-shadow(0 18px 22px rgba(0,0,0,.22));transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.ctrl-card:hover .ctrl-art img{transform:scale(1.05) rotate(-2deg)}
+.ctrl-ph svg{width:72px;height:72px;color:#9DB4D8}
+.ctrl-card b{font-size:21px;letter-spacing:-0.02em}
+.ctrl-card span{color:var(--ink-2);font-size:16px}
+@media (max-width:900px){.ctrl-cards{grid-template-columns:1fr}}
 @media (max-width:900px){.pa-grid{grid-template-columns:1fr}}
 /* faq */
 .faq-sec{background:var(--bg);padding-top:clamp(24px,4vw,48px)}
@@ -1311,7 +1321,7 @@ a.make:hover .make-art span{transform:scale(1.08) rotate(90deg)}
 .reqs div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 14px;border-radius:12px;background:var(--bg-alt)}
 .reqs dt{font-weight:600;color:var(--ink)}
 .reqs dd{margin:0}
-@media (max-width:560px){.reqs div{grid-template-columns:1fr;gap:2px}.ctrl-list{grid-template-columns:1fr}}
+@media (max-width:560px){.reqs div{grid-template-columns:1fr;gap:2px}}
 /* footer page links */
 .foot-pages{display:flex;flex-wrap:wrap;gap:8px 22px;padding:18px 0;border-top:1px solid rgba(0,0,0,.08);font-size:14px}
 .foot-pages a{color:var(--ink-2)}
@@ -1323,6 +1333,12 @@ a.make:hover .make-art span{transform:scale(1.08) rotate(90deg)}
 @media (max-width:560px){.explore .clip-grid{grid-template-columns:1fr 1fr;gap:12px}.explore .mg-body{padding:14px 14px 16px}.explore .mg h3{font-size:18px}.explore .mg p{font-size:14px}.explore .more{font-size:14px}.explore .aria.sm{--s:2}}
 @media (max-width:900px){.mode.flip{grid-template-columns:1fr}}
 .yt-crop iframe{transform-origin:0 0}
+.gp-top{padding:clamp(24px,3vw,40px) 0 0;background:var(--bg)}
+.wrap.wide{max-width:1440px}
+.gp-top .reel.full{border-radius:clamp(18px,2.4vw,32px)}
+.gp-h{font-size:clamp(36px,5.6vw,64px);font-weight:700;letter-spacing:-0.04em}
+.next-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:clamp(36px,5vw,56px)}
+.foot-tm{font-size:12px;line-height:1.5;color:var(--ink-2);opacity:.8;padding:0 0 16px;max-width:110ch}
 
 </style>
 <script>window.DD_SPY=[]</script><script>window.DD_MAIL={"url": ""}</script></head>
@@ -1378,6 +1394,7 @@ a.make:hover .make-art span{transform:scale(1.08) rotate(90deg)}
       
     </div>
     <nav class="foot-pages" aria-label="Pages"><a href="/" aria-current="page">Home</a><a href="/gameplay/">Gameplay</a><a href="/how-it-works/">How it works</a><a href="/characters/">Characters</a><a href="/modes/">Modes</a><a href="/features/">Features</a><a href="/faq/">FAQ</a></nav>
+    <p class="foot-tm">PlayStation is a registered trademark of Sony Interactive Entertainment Inc. Xbox and Windows are trademarks of Microsoft Corporation. Nintendo Switch and Joy-Con are trademarks of Nintendo. Steam and Steam Deck are trademarks of Valve Corporation. macOS is a trademark of Apple Inc. Linux is a registered trademark of Linus Torvalds. All trademarks belong to their respective owners. This product is not affiliated with or endorsed by these companies.</p>
     <div class="foot-bot">
       <span>© 2026 Done Different. All rights reserved.</span>
       

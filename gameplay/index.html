@@ -1281,20 +1281,10 @@ a.make:hover .make-art span{transform:scale(1.08) rotate(90deg)}
 .play-any{background:var(--bg)}
 .pa-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
 .deck{margin:0;display:flex;flex-direction:column;align-items:center;gap:16px}
-.deck-body{width:100%;display:grid;grid-template-columns:15% 1fr 15%;grid-template-rows:1fr 1fr;align-items:center;justify-items:center;padding:clamp(14px,2vw,22px) 0;border-radius:clamp(36px,6vw,70px);background:linear-gradient(180deg,#2A2D35,#16181D);box-shadow:0 50px 90px -45px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08)}
-.deck-screen{grid-column:2;grid-row:1/3;width:100%;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:#000;box-shadow:0 0 0 clamp(6px,1vw,10px) #0B0C10}
-.deck-screen video{width:100%;height:100%;object-fit:cover}
-.deck-stick{width:clamp(26px,3.6vw,44px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#4A4E58,#1C1E24 70%);box-shadow:0 3px 6px rgba(0,0,0,.5)}
-.deck-stick.l{grid-column:1;grid-row:1}
-.deck-stick.r{grid-column:3;grid-row:2}
-.deck-pad,.deck-btns{width:clamp(30px,4vw,50px);aspect-ratio:1;position:relative}
-.deck-pad{grid-column:1;grid-row:2}
-.deck-btns{grid-column:3;grid-row:1}
-.deck-pad i,.deck-btns i{position:absolute;background:#3A3D46;border-radius:3px}
-.deck-pad i{width:33%;height:33%}
-.deck-pad i:nth-child(1){left:33%;top:0}.deck-pad i:nth-child(2){left:33%;bottom:0}.deck-pad i:nth-child(3){left:0;top:33%}.deck-pad i:nth-child(4){right:0;top:33%}
-.deck-btns i{width:30%;height:30%;border-radius:50%}
-.deck-btns i:nth-child(1){left:35%;top:0}.deck-btns i:nth-child(2){left:35%;bottom:0}.deck-btns i:nth-child(3){left:0;top:35%}.deck-btns i:nth-child(4){right:0;top:35%}
+.deck-img{position:relative;width:100%}
+.deck-img img{display:block;width:100%;height:auto}
+.deck-screen{position:absolute;left:23.9%;top:5.17%;width:53.65%;height:86.72%;overflow:hidden;background:#000;border-radius:.4%}
+.deck-screen video{width:100%;height:100%;object-fit:cover;display:block}
 .deck figcaption{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--ink-2)}
 .deck figcaption::before{content:"";width:8px;height:8px;border-radius:50%;background:#34C759}
 .ctrl h3{font-size:clamp(32px,4.4vw,50px);font-weight:700;letter-spacing:-0.04em;line-height:1.05}
@@ -1332,6 +1322,7 @@ a.make:hover .make-art span{transform:scale(1.08) rotate(90deg)}
 .aria.sm{--s:3.6}
 @media (max-width:560px){.explore .clip-grid{grid-template-columns:1fr 1fr;gap:12px}.explore .mg-body{padding:14px 14px 16px}.explore .mg h3{font-size:18px}.explore .mg p{font-size:14px}.explore .more{font-size:14px}.explore .aria.sm{--s:2}}
 @media (max-width:900px){.mode.flip{grid-template-columns:1fr}}
+.yt-crop iframe{transform-origin:0 0}
 
 </style>
 <script>window.DD_SPY=[["top", "/gameplay/"]]</script><script>window.DD_MAIL={"url": ""}</script></head>
@@ -2060,10 +2051,17 @@ document.querySelectorAll('[data-lang-link]').forEach(a => a.addEventListener('c
     if(player) return; player=1;
     api(function(){
       player=new YT.Player('fullyt',{host:'https://www.youtube-nocookie.com',videoId:ID,
-        playerVars:{autoplay:0,mute:1,controls:1,rel:0,playsinline:1,iv_load_policy:3,modestbranding:1,vq:'hd1080'},
-        events:{onReady:function(){ ok=true; box.classList.add('ready'); if(want) want(); want=null; }}});
+        playerVars:{autoplay:0,mute:1,controls:1,rel:0,playsinline:1,iv_load_policy:3,vq:'hd1080'},
+        events:{onReady:function(){ ok=true; fit(); try{ player.setPlaybackQuality('hd1080'); }catch(e){} box.classList.add('ready'); if(want) want(); want=null; }}});
+      fit();
     });
   }
+  function fit(){
+    var f=box.querySelector('.yt-crop iframe'); if(!f) return;
+    var w=box.clientWidth, dpr=window.devicePixelRatio||1, k=(w>=700)?Math.max(1,1920/(w*dpr)):1;
+    f.style.width=(w*k)+'px'; f.style.height=(w*9/16*k)+'px'; f.style.transform=k>1?'scale('+(1/k)+')':'';
+  }
+  addEventListener('resize',fit);
   function run(f){ if(ok) f(); else { want=f; make(); } }
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){ es.forEach(function(e){

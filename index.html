@@ -150,7 +150,7 @@
       await wait(1300);
       if(reduce){ await wait(900); st.classList.remove('talk'); bub.textContent=''; busy=false; return; }
       st.classList.remove('talk');
-      // run to the edge of the stage
+      // runs to the edge of the stage
       var sr=st.getBoundingClientRect(), br=btn.getBoundingClientRect(), dist=sr.right-br.right-8;
       a.setAttribute('data-anim','run');
       var run=btn.animate([{transform:'translateX(0)'},{transform:'translateX('+dist+'px)'}],{duration:Math.max(500,dist*2.2),easing:'linear',fill:'forwards'});

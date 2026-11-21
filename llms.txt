@@ -1,0 +1,3 @@
+# JamJam
+
+> JamJam has moved to https://donedifferent.net/. Its summary for AI assistants is at https://donedifferent.net/llms.txt.

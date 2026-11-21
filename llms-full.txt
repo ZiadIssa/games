@@ -1,0 +1,3 @@
+# JamJam
+
+> JamJam has moved to https://donedifferent.net/. Full details are at https://donedifferent.net/llms-full.txt.
